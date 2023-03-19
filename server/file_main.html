@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+        <title>ファイル選択画面</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/file_main.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/prism.css" />
+
+        <!-- Javascript -->
+        <script src="js_front/ddupload.js"></script>
+        <script src="js_front/prism.js"></script>
+        <script src="js_front/jquery-3.6.4.min.js"></script>
+        <script src="js_front/loadingoverlay.js"></script>
+
+        <style>
+            #dropTarget {
+                width: 380px;
+                min-height: 100px;
+                border: 2px dotted rgba(135, 206, 250, 1.0);
+            }
+
+            #dropPrompt {
+                color: gray;
+                margin: 1em;
+                font-style: italic;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+            </div>
+          </div>
+          <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+              <div class="d-flex justify-content-start">
+                <form class="navbar-brand" method="POST" action="http://172.16.192.104:8080/oasys2232/LoginServlet">
+                    <input type="hidden" id="sendname" name="user_Id" value>
+                    <input type="hidden" id="sendpass" name="user_Pass" value>
+                    <button type="submit" class="btn btn-dark ms-3">
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-house mb-1" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                        </svg>
+                         HOME
+                    </button>
+                </form>
+                <button class="navbar-brand btn btn-dark ms-3" id="invitable">
+                    <svg width="16" height="16" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16">
+                        <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z"/>
+                    </svg>
+                     TERMINAL
+                </button>
+                <button class="navbar-brand btn btn-dark" id="visi">
+                    <svg width="16" height="16" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16">
+                        <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z"/>
+                    </svg>
+                     LIST
+                </button>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="loading" id="loading">
+            <span class="circle"></span>
+          </div>
+        <script>
+            window.scroll({top: 0, behavior: 'smooth'});
+        </script>
+        <div class="d-flex frex-low d-flex justify-content-center">
+            <div class="container-menu bg-body-secondary mt-3 pc">
+                <form class="diff mt-5 pc" id="diff">
+                    <div class="d-flex justify-content-between">
+                        <select id="before-pc" class="form-select form-select-sm me-1 form-control-plaintext" aria-label=".form-select-sm example" disabled>
+                        </select>
+                        <div></div>
+                        <select id="after-pc" class="form-select form-select-sm form-control-plaintext ms-1" aria-label=".form-select-sm example" disabled>
+                        </select>
+                        <input type="button" id="diffButton-pc" class="btn btn-success align-self-start ms-1" value="差分" disabled>
+                    </div>
+                </form>
+                <form class="needs-validation mt-5" id="create-pc pc">
+                    <div class="d-flex justify-content-start">
+                        <div>
+                            <input id="mkdirtext-pc" type="text" class="form-control pc" id="validationCustom01" placeholder="作成するディレクトリ名" disabled>       
+                        </div>
+                        <div  class="col-auto">
+                            <button id ="mkdir-pc" class="btn btn-success ms-1 mt-1 pc" type="submit" true>作成</button>
+                        </div>
+                    </div>
+                    <div id="msg"></div>
+                </form>
+                <form id="up-pc" action="/upload" method="POST" enctype="multipart/form-data" class="mt-5 pc">
+                    <input id="uid-pc" type="hidden" name="uid" value="">
+                    <input id="dname-pc" type="hidden" name="dname" value="">
+                    <input id="file-pc" type="file" name="file" class="file text-white"> 
+                    <select id="ftype-pc" name="type" class="form-select form-select-sm mt-1" aria-label=".form-select-sm example" disabled>
+                        <option value="none" hidden> -- ファイル種別を選んでください -- </option>
+                        <option value="1">EXE</option>
+                        <option value="2">TXT</option>
+                        <option value="3">C</option>
+                        <option value="4">CPP</option>
+                    </select>
+                </form>
+                <div class="d-flex justify-content-end">
+                    <button type="button" id="uploadButton-pc" class="btn btn-primary mt-1 pc">
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-cloud-download" viewBox="0 0 16 16">
+                            <path d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z"/>
+                            <path d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z"/>
+                        </svg> Upload
+                    </button>
+                </div>
+            </div>
+            <div class="container" id="container">
+                <div id="sm" disabled="false">
+                    <div class="dir shadow bg-body rounded" id="curr">
+                        <div id="currdir" class="border rounded border-success"></div>
+                    </div>
+                    <div id="retArea"><div id="ret" class="d-flex justify-content-end mb-5"></div></div>
+                    <form class="diff sm mt-5" id="diff">
+                        <div class="d-flex justify-content-between">
+                            <select id="before-sm" class="form-select form-select-sm me-1 form-control-plaintext" aria-label=".form-select-sm example" disabled>
+                            </select>
+                            <div></div>
+                            <select id="after-sm" class="form-select form-select-sm form-control-plaintext ms-1" aria-label=".form-select-sm example" disabled>
+                            </select>
+                            <input type="button" id="diffButton-sm" class="btn btn-success align-self-start ms-1" value="差分" disabled>
+                        </div>
+                    </form>
+                    <form class="needs-validation mt-3 sm" id="create-sm sm">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <input id="mkdirtext-sm" type="text" class="form-control sm" id="validationCustom01" placeholder="作成するディレクトリ名" disabled>       
+                            </div>
+                            <div></div>
+                            <div  class="col-auto">
+                                <button id ="mkdir-sm" class="btn btn-success ms-1 mt-1 sm" type="submit" true>作成</button>
+                            </div>
+                        </div>
+                        <div id="msg"></div>
+                    </form>
+                    <form id="up-sm" action="/upload" method="POST" enctype="multipart/form-data" class="sm sm-cmd mt-3">
+                        <input id="uid-sm" type="hidden" name="uid" value="">
+                        <input id="dname-sm" type="hidden" name="dname" value="">
+                        <input id="file-sm" type="file" name="file" class="file">
+                        <select id="ftype-sm" name="type" class="form-select form-select-sm mt-1" aria-label=".form-select-sm example" disabled>
+                            <option value="none"> -- ファイル種別を選んでください -- </option>
+                            <option value="1">EXE</option>
+                            <option value="2">TXT</option>
+                            <option value="3">C</option>
+                            <option value="4">CPP</option>
+                        </select>
+                    </form>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" id="uploadButton-sm" class="btn btn-primary mt-1 sm sm-cmd">
+                            <svg width="16" height="16" fill="currentColor" class="bi bi-cloud-download" viewBox="0 0 16 16">
+                                <path d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z"/>
+                                <path d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z"/>
+                            </svg> Upload
+                        </button>
+                    </div>
+                </div>
+                <transition>
+                    <div v-show="isShowText">
+                        <pre class=""><code id="terminal" class="language-c language-cpp line-numbers code-toolbar"></code></pre>
+                    </div>
+                </transition>
+            </div>
+            <div class="container-menu bg-body-secondary pc">
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "readdir",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "connect-redis": "^7.0.1",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "initDir": "file: ./initDir",
+    "ioredis": "^5.3.1",
+    "jdom": "^3.2.5",
+    "jquery": "^3.6.4",
+    "jsdom": "^21.1.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.21",
+    "pg": "^8.10.0",
+    "psql": "file: ./psql",
+    "redis": "^4.6.5",
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {},
+  "description": ""
+}

@@ -1,4 +1,6 @@
 # FileSharing
+
+<pre>
 <br>
 server<br>
 &nbsp;&nbsp;|-&nbsp;Setup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Includes Setup ShellScripts(Sub)<br>
@@ -10,6 +12,7 @@ server<br>
 &nbsp;&nbsp;|<br>
 &nbsp;&nbsp;|-&nbsp;file_main.html&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Main Page For ClientSide<br>
 &nbsp;&nbsp;|-&nbsp;index.js&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Main Program For ServerSide<br>
-&nbsp;&nbsp;|-&nbsp;package-lock.json<pre>&#009;&#009;</pre>// Server Info And Scripts<br>
-&nbsp;&nbsp;|-&nbsp;package.json<pre>&#009;&#009;</pre>// Server Info And Scripts<br>
-&nbsp;&nbsp;|-&nbsp;test.html<pre>&#009;&#009;</pre>// Entry Point For Test<br>
+&nbsp;&nbsp;|-&nbsp;package-lock.json&#009;&#009;// Server Info And Scripts<br>
+&nbsp;&nbsp;|-&nbsp;package.json&#009;&#009;// Server Info And Scripts<br>
+&nbsp;&nbsp;|-&nbsp;test.html&#009;&#009;// Entry Point For Test<br>
+</pre>

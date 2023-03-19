@@ -1,15 +1,15 @@
 # FileSharing
 <br>
 server<br>
-  |- Setup               // Includes Setup ShellScripts(Sub)<br>
-  |- css                 // Includes CSS Files<br>
-  |- js_back             // Includes Javascript Files Running On The ServerSide<br>
-  |- js_front            // Includes Javascript Files Running On The ClientSide<br>
-  |- shell               // Includes Setup ShellScripts(Main)<br>
-  |- sql                 // Includes SQL File<br>
-  |
-  |- file_main.html      // Main Page For ClientSide<br>
-  |- index.js            // Main Program For ServerSide<br>
-  |- package-lock.json   // Server Info And Scripts<br>
-  |- package.json        // Server Info And Scripts<br>
-  |- test.html           // Entry Point For Test<br>
+&nbsp;&nbsp;|-&nbsp;Setup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Includes Setup ShellScripts(Sub)<br>
+&nbsp;&nbsp;|-&nbsp;css&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Includes CSS Files<br>
+&nbsp;&nbsp;|-&nbsp;js_back&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Includes Javascript Files Running On The ServerSide<br>
+&nbsp;&nbsp;|-&nbsp;js_front&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Includes Javascript Files Running On The ClientSide<br>
+&nbsp;&nbsp;|-&nbsp;shell&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Includes Setup ShellScripts(Main)<br>
+&nbsp;&nbsp;|-&nbsp;sql&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Includes SQL File<br>
+&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;|-&nbsp;file_main.html&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Main Page For ClientSide<br>
+&nbsp;&nbsp;|-&nbsp;index.js&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Main Program For ServerSide<br>
+&nbsp;&nbsp;|-&nbsp;package-lock.json&nbsp;&nbsp;&nbsp;// Server Info And Scripts<br>
+&nbsp;&nbsp;|-&nbsp;package.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Server Info And Scripts<br>
+&nbsp;&nbsp;|-&nbsp;test.html&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Entry Point For Test<br>
